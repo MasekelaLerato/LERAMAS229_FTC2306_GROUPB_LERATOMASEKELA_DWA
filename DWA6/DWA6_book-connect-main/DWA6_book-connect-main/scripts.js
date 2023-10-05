@@ -79,58 +79,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /*BOOKS TO BE DISPLAYED*/
-// variables used to extract 36 books that will be displayed
-const fragment = document.createDocumentFragment();
-let startIndex = 0;
-let endIndex = 36;
-const extracted = books.slice(startIndex, endIndex);
-
 /**
- * function is responsible for creating an HTML element that represents a book preview based on the information provided in the book object.
+ * Function to create a book preview element based on the provided book object.
+ * @param {object} book - The book object with book properties.
  * @returns {HTMLElement} - The created book preview element.
- *  @param {object} book = object with book properties
  */
-function createBookPreview(book) {
-  // Create a <dl> element to represent the book preview
-  const preview = document.createElement("dl");
-  preview.className = "preview";
-  // Set dataset attributes for book information
-  preview.dataset.id = book.id;
-  preview.dataset.title = book.title;
-  preview.dataset.image = book.image;
-  preview.dataset.subtitle = `${authors[book.author]} (${new Date(
-    book.published
-  ).getFullYear()})`;
-  preview.dataset.description = book.description;
-  preview.dataset.genre = book.genres;
-// Create HTML structure for the book preview
-  preview.innerHTML = /*html*/ `
-       <div>
-         <image class='preview__image' src="${book.image}" alt="book pic"/>
-       </div>
-       <div class='preview__info'>
-         <dt class='preview__title'>${book.title}<dt>
-         <dt class='preview__author'> By ${authors[book.author]}</dt>
-       </div>`;
-
-  return preview;
-}
-
-/**
- * code loops through the extracted array of books, creates a preview element for each book using the createBookPreview function 
- * appends these elements to the booklist element, which presumably is a container for displaying book previews. 
- * he result is that the book previews are added to the HTML, and users can see them on the webpage.
- */
-// Loop through the extracted books and create book previews for each one
-for (let i = 0; i < extracted.length; i++) {
-    // Create a book preview element using the createBookPreview function
-  const bookPreview = createBookPreview(extracted[i]);
-  // Append the book preview to the fragment
-  fragment.appendChild(bookPreview);
-}
-//'book' variable holds a reference to the element that will contain the book previews.
-const book = document.querySelector("[data-list-items]");
-book.appendChild(fragment);
+function createBookPreviewElement(book) {
+    const preview = document.createElement("dl");
+    preview.className = "preview";
+    preview.dataset.id = book.id;
+    preview.dataset.title = book.title;
+    preview.dataset.image = book.image;
+    preview.dataset.subtitle = `${authors[book.author]} (${new Date(
+      book.published
+    ).getFullYear()})`;
+    preview.dataset.description = book.description;
+    preview.dataset.genre = book.genres;
+    preview.innerHTML = /*html*/ `
+      <div>
+        <image class='preview__image' src="${book.image}" alt="book pic"/>
+      </div>
+      <div class='preview__info'>
+        <dt class='preview__title'>${book.title}</dt>
+        <dt class='preview__author'> By ${authors[book.author]}</dt>
+      </div>`;
+    return preview;
+  }
+  
+  /**
+   * Function to display a list of book previews within a specified range.
+   * @param {HTMLElement} container - The container element to append book previews to.
+   * @param {number} startIndex - The starting index of the books to display.
+   * @param {number} endIndex - The ending index of the books to display.
+   */
+  function displayBookPreviews(container, startIndex, endIndex) {
+    const fragment = document.createDocumentFragment();
+    for (let i = startIndex; i < endIndex; i++) {
+      const bookPreview = createBookPreviewElement(books[i]);
+      fragment.appendChild(bookPreview);
+    }
+    container.innerHTML = ''; // Clear the container before appending
+    container.appendChild(fragment);
+  }
+  
+  // Variables for displaying books
+  const bookListContainer = document.querySelector("[data-list-items]");
+  let startIndex = 0;
+  let endIndex = 36;
+  
+  // Display the initial set of book previews
+  displayBookPreviews(bookListContainer, startIndex, endIndex);
+  
 
 
 /**
@@ -199,6 +198,15 @@ const genreSelect = document.querySelector("[data-search-genres]");
 selectDropdown(authorSelect, authors);
 selectDropdown(genreSelect, genres);
 
+
+
+// Define references to the necessary HTML elements
+const overlay = document.querySelector("[data-list-active]");
+const title = document.querySelector("[data-list-title]");
+const subtitle = document.querySelector("[data-list-subtitle]");
+const description = document.querySelector("[data-list-description]");
+const image = document.querySelector("[data-list-image]");
+const imageBlur = document.querySelector("[data-list-blur]");
 /**
  * Function to toggle the display of book details when a book preview is clicked
  * and hide them when the close button is clicked.
