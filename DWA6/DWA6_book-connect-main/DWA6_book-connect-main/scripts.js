@@ -34,51 +34,52 @@ const theme = {
 };
 
 /* THEME DISPLAY*/
+// In this abstracted code, the logic for applying, saving, and initializing themes is encapsulated within separate functions, making the code more modular and easier to understand.
+// Function to apply the selected theme's colors to the body
+function applyTheme(theme) {
+  document.body.style.setProperty("--color-dark", theme.dark);
+  document.body.style.setProperty("--color-light", theme.light);
+}
+
+// Function to save the selected theme in local storage
+function saveTheme(selectedTheme) {
+  localStorage.setItem("selectedTheme", selectedTheme);
+}
+
+// Function to initialize theme settings
+function initializeThemeSettings(themeSettings) {
+  const savedTheme = localStorage.getItem("selectedTheme");
+
+  if (savedTheme) {
+    themeSettings.value = savedTheme;
+    applyTheme(theme[savedTheme]);
+  }
+}
+
 // Get references to the theme settings and save button elements
 const themeSettings = document.querySelector("[data-settings-theme]");
 const themeSaveButton = document.querySelector(
   "body > dialog:nth-child(5) > div > div > button.overlay__button.overlay__button_primary"
 );
+
 // Add a click event listener to the save button
 themeSaveButton.addEventListener("click", (event) => {
   event.preventDefault();
-  // Get the selected theme value
   const selectedTheme = themeSettings.value;
- 
-   // Apply the selected theme's colors to the body
-   if (selectedTheme === "day") {
-    document.body.style.setProperty("--color-dark", theme.day.dark);
-    document.body.style.setProperty("--color-light", theme.day.light);
-  } else if (selectedTheme === "night") {
-    document.body.style.setProperty("--color-dark", theme.night.dark);
-    document.body.style.setProperty("--color-light", theme.night.light);
-  }
-// Save the selected theme in local storage
-   localStorage.setItem("selectedTheme", selectedTheme);
-  // Hide the settings overlay
+  applyTheme(theme[selectedTheme]);
+  saveTheme(selectedTheme);
   document.querySelector("[data-settings-overlay]").style.display = "none";
 });
 
+// Add a DOMContentLoaded event listener to initialize theme settings
 document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("selectedTheme");
-
-  if (savedTheme) {
-    // Apply the saved theme's colors to the body
-    if (savedTheme === "day") {
-      document.body.style.setProperty("--color-dark", theme.day.dark);
-      document.body.style.setProperty("--color-light", theme.day.light);
-    } else if (savedTheme === "night") {
-      document.body.style.setProperty("--color-dark", theme.night.dark);
-      document.body.style.setProperty("--color-light", theme.night.light);
-    }
-
-    // Set the selected theme in your theme settings dropdown
-    themeSettings.value = savedTheme;
-  }
+  initializeThemeSettings(themeSettings);
 });
 
 
+
 /*BOOKS TO BE DISPLAYED*/
+// adheres to abstraction by encapsulating the process of creating a book preview element, which involves setting various dataset attributes and generating the HTML structure, into a single function with clear input (the book object) and output (the created book preview element).
 /**
  * Function to create a book preview element based on the provided book object.
  * @param {object} book - The book object with book properties.
@@ -106,7 +107,11 @@ function createBookPreviewElement(book) {
     return preview;
   }
   
-  /**
+
+
+  // adheres to abstraction by defining a function displayBookPreviews that takes care of creating and displaying a list of book previews within a specified range, abstracting away the details of iterating through the books, creating book preview elements, and appending them to the container.
+
+/**
    * Function to display a list of book previews within a specified range.
    * @param {HTMLElement} container - The container element to append book previews to.
    * @param {number} startIndex - The starting index of the books to display.
@@ -199,8 +204,8 @@ selectDropdown(authorSelect, authors);
 selectDropdown(genreSelect, genres);
 
 
-
-// Define references to the necessary HTML elements
+// This code adheres to abstraction by encapsulating the functionality of displaying and hiding book details within the toggleBookDetails function. It takes care of various operations such as checking dataset attributes, updating the display, and setting image sources based on the clicked element, abstracting away these details from the main code.
+/*Define references to the necessary HTML elements*/
 const overlay = document.querySelector("[data-list-active]");
 const title = document.querySelector("[data-list-title]");
 const subtitle = document.querySelector("[data-list-subtitle]");
