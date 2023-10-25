@@ -9,11 +9,20 @@ const resetButton = document.querySelector('#resetButton');
 const resetAlert = document.querySelector('#resetAlert');
 
 // Action Types
+//  These are labels used to indicate the type of action that needs to be performed.
 const ADD = 'ADD';
 const SUBTRACT = 'SUBTRACT';
 const RESET = 'RESET';
 
-// Reducer function to manage state changes
+/**
+ * Reducer function to manage state changes for a counting app.
+ *it increments or decrements the state or resets it based on the action type.
+ * 
+ * @param {number} state - The current state, representing the count.
+ * @param {object} action - An action object describing the change to apply.
+ * @param {string} action.type - The type of action to perform (ADD, SUBTRACT, RESET).
+ * @returns {number} - The new state after applying the action.
+ */
 const numberReducer = (state = 0, action) => {
   switch (action.type) {
     case ADD:
@@ -27,7 +36,12 @@ const numberReducer = (state = 0, action) => {
   }
 };
 
-// Function to create a Redux-inspired store
+// Function to create a Redux-inspired store. . The store manages application state. It contains a current state, a way to dispatch actions to update the state, and a mechanism to subscribe to state changes. The store is initialized with an empty action, setting the initial state.
+/**
+ * 
+ * @param {function} reducer  - A reducer function that manages state changes.
+ * @returns {object} - A Redux-inspired store with methods to get, dispatch, and subscribe to state changes.
+ */
 const createStore = (reducer) => {
   let state;
   let listeners = [];
@@ -59,9 +73,12 @@ const createStore = (reducer) => {
 };
 
 // Create a store using the numberReducer
+// This line creates a store using the createStore function and the numberReducer
+//This store is responsible for managing the state of your counting app.
 const store = createStore(numberReducer);
 
 // Function to log state changes to the console
+
 const logStateChange = () => {
   const newState = store.getState();
   console.log('State changed:', newState);
@@ -71,6 +88,7 @@ const logStateChange = () => {
 store.subscribe(logStateChange);
 
 // Event handler for subtract button
+//It dispatches a SUBTRACT action to the store, indicating that the state should be decremented, and it logs a message to the console.
 const subtractHandler = () => {
   // Dispatch a SUBTRACT action when the button is clicked
   store.dispatch({ type: SUBTRACT });
@@ -78,6 +96,7 @@ const subtractHandler = () => {
 };
 
 // Event handler for add button
+//It dispatches an ADD action to the store, indicating that the state should be incremented, and it logs a message to the console.
 const addHandler = () => {
   // Dispatch an ADD action when the button is clicked
   store.dispatch({ type: ADD });
@@ -85,6 +104,7 @@ const addHandler = () => {
 };
 
 // Event handler for reset button
+// It dispatches a RESET action, logs a message, and sets the resetAlert element to be displayed, showing an alert on the page.
 const resetHandler = () => {
   // Dispatch a RESET action when the button is clicked
   store.dispatch({ type: RESET });
