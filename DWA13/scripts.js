@@ -35,7 +35,7 @@ const characterCounts = names.map((name) => name.length);
 console.log(characterCounts);
 
 //5.Using toSorted to sort all provinces alphabetically.
-provinces.sort();
+const province = provinces.slice().sort;
 
 console.log(provinces);
 
@@ -54,9 +54,9 @@ const containsSArray = names.map((name) => name.includes('S'));
 console.log(containsSArray);
 
 // 8.Using only reduce, turn the above into an object that indicates the province of an individual
-const nameProvinceObject = names.reduce((result, name, index) => {
-    result[name] = provinces[index];
-    return result;
+const nameProvinceObject = names.reduce((Obj, name, index) => {
+    Obj[name] = provinces[index];
+    return Obj;
   }, {});
   
   console.log(nameProvinceObject);
