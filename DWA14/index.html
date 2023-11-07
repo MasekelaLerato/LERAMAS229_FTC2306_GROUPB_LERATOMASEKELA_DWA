@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="styles.css"> -->
-  <script type="module" src="tally-app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tally Count</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace-autoloader.js"></script>
+
+    <link rel="stylesheet" media="(prefers-color-scheme:light)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css" />
+    <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/dark.css"
+        onload="document.documentElement.classList.add('sl-theme-dark');" />
+
+    <script src="https://kit.fontawesome.com/e223308f2e.js" crossorigin="anonymous" defer></script>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="./index.js" type="module" defer></script>
 </head>
+
 <body>
-  <tally-app></tally-app>
+   
+    <tally-app></tally-app>
+
 </body>
+
 </html>
 
 
@@ -21,62 +41,3 @@
 
 
 
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap"
-      rel="stylesheet"
-    />
-<script src="script.js" defer></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.10.0/cdn/themes/light.css" />
-<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.10.0/cdn/shoelace-autoloader.js"></script>
-<link rel="stylesheet" href="styles.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js"></script>
-<title>Tally Count</title>
-  </head>
-  <body>
-    <header class="header">
-      <h1 class=" header_title">Tally Count</h1>
-    </header>
-  
-    <main class="counter">
-     
-        <input class="counter_value" data-key="number" value="0">
-        <div class="counter_actions">
-         <button data-key="subtract"  class="counter_button counter_button_first">-</button>
-        <button  data-key="add" class="counter_button">+</button>
-    </div>
-    
-    <div data-key="alert-duration">
-        <sl-button variant="primary" id="resetButton">Reset</sl-button>
-      
-        <sl-alert variant="primary" duration="5000" closable id="resetAlert">
-          <sl-icon slot="icon" name="info-circle"></sl-icon>
-     The Counter Has Been Reset!
-        </sl-alert>
-      </div>
-    <tally-app></tally-app> -->
-    
-    <!-- <div data-key="alert-duration">
-    <sl-button class="reset_button" outline data-key="reset">
-       Reset</sl-button>
-       <sl-alert variant="primary" duration="5000" closable data-key="message"> 
-        <sl-icon slot="icon" name="info-circle"></sl-icon>
-       </sl-alert>
-    </div> -->
-<!-- </main>
-    
-<footer class="footer">
-        Inspired by <a class="footer_link" href="https://tallycount.app/">Tally Count</a>
-        Note that this merely a student practice project for learning JavaScript
-    </footer>
-  </body>
-</html> -->

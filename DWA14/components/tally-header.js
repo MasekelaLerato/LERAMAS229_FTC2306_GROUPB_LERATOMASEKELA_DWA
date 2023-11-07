@@ -1,6 +1,6 @@
-import { LitElement, html, css } from "DWA14/libs/Lit-html";
+import { LitElement, html, css } from "../libs/lit-html";
 
-class TallyHeader extends LitElement {
+export class TallyHeader extends LitElement {
     static styles = css`
     header {
         display: flex;

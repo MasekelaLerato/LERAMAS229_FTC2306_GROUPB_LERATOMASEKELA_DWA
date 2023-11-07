@@ -1,11 +1,15 @@
-import { LitElement, html } from "DWA14/libs/Lit-html";
-import './header.js';
-import './app.js';
+import { LitElement, html } from "../libs/lit-html.js";
+import "./tally-header.js"
+import "./tally-main.js"
 
-class TallyApp extends LitElement {
+//defining a custom web component called tally-app using LitElement. This component appears to include two child components, tally-header and tally-main. It's a well-structured way to build a web application using web components.
+
+
+export class TallyApp extends LitElement {
     render() {
         return html`
-        <tally-header></tally-header>
+        
+        <tally-header></tally-header> 
         <tally-main></tally-main>
         `;
     }
