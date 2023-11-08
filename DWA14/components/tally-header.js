@@ -1,6 +1,6 @@
-import { LitElement, html, css } from "../libs/lit-html";
+import { LitElement, html, css } from '../libs/lit-html.js'
 
-export class TallyHeader extends LitElement {
+ class TallyHeader extends LitElement {
     static styles = css`
     header {
         display: flex;

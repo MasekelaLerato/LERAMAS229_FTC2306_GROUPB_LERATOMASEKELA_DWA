@@ -1,58 +1,98 @@
-import { LitElement, html, css } from "DWA14/libs/Lit-html";
+import { LitElement, html, css } from "../libs/lit-html.js";
 
 class TallyMain extends LitElement {
     static styles = css`
-    .counter__value {
-        width: 100%;
-        height: 15rem;
+    :root{
+        --color-green:#31c48d;
+        --color-white:#ffffff;
+        --color-dark-grey:#33333d;
+        --color-medium-grey:#424250;
+        --color-light-grey:#9ca3ae;
+             }
+    
+    
+    *{
+        box-sizing: border-box;
+    }
+    html{
+        height: 100vh;
+    }
+    body{
+        margin: 0;
+        color: var(--color-white);
+        background-color: var(--color-medium-grey);
+        font-family: Roboto, Arial, Helvetica, sans-serif;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    /*header*/
+    .header{
         text-align: center;
-        font-size: 4rem;
-        font-weight: 900;
-        padding-bottom: 1rem;
-      }
-
-      .counter__action {
-        display: flex;
-      }
-      
-      .counter__button {
-        text-align: center;
-        width: 100%;
-        height: 15rem;
-        padding-left: 10rem;
-        padding-top: 1rem;
-        border-width: 100;
-        columns: #4c4e53;
+    }
+    .header_title{
         font-size: 3rem;
-        border-bottom: 1px solid #4c4e53;
-        transition: transform 0.3s;
-        transform: translateY(0);
-      }
-      
-      .counter__button::part(base) {
-       font-size: 12rem;
-      }
-      .counter__button:active {
-        background: rgb(36, 34, 34);
-        transform: translateY(2%);
-      }
-      .counter__button:disabled {
-        opacity: 0.2;
-      }
-      .reset_actions {
+        font-weight: 900;
+        color: var(--color-light-grey);
+    }
+    /*counter*/
+    
+    .controls{
+        background: yellow;
+    }
+    /*counter*/
+    .counter{
+        background: var(--color-dark-grey);
+    }
+    .counter_value{
+        width: 100%;
+        height: 15rem;
+        text-align: center;
+        font-size: 6rem;
+        font-weight: 900;
+        background: none;
+        color:var(--color-white);
+        border-width: 0;
+        border-bottom: 1px solid var(--color-light-grey);
+    }
+    .counter_button:disabled{
+        opacity: 0.2
+    }
+    .counter_actions{
         display: flex;
-        justify-content: center;
-        // border-bottom: 1px solid #4c4e53;
-        padding-top: 1rem;
-      }
-      
-      .reset-button {
-        font-size: 4rem;
-        border-radius: 3rem;
-        background-color: red;
-        
-      }
-    `;
+    }
+    .counter_button{
+        background: none;
+        width: 50%;
+        border-width: 0;
+     
+        color: var(--color-white);
+     font-size: 3rem;
+     height: 10rem;
+     border-bottom: 1px solid var(--color-light-grey);
+     transition: transform 0.3sec;
+     transform: translateY(0);
+    }
+    .counter_button_first{
+        border-right: 1px solid var(--color-light-grey);
+    
+    }
+    .counter_button:active{
+        background: var(--color-medium-grey);
+        transform: translateY(2%);
+    }
+    /*footer*/
+    .footer{
+        background-color: var(--color-dark-grey);
+        color: var(--color-light-grey);
+       padding: 2rem;
+       font-size: 0.8rem;
+       text-align: center;
+    
+    }
+    .footer_link{
+        color: var(--color-white);
+    }`
 
     static properties = {
         number: { type: Number },
