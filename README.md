@@ -15,6 +15,7 @@ Here is a list of resources and tools used in the development of the Book Connec
 - Code Hosting: [GitHub](https://github.com/)
 - Text Editor: [Visual Studio Code](https://code.visualstudio.com/)
 - Documentation: [Markdown](https://www.markdownguide.org/)
+- Interactivity:[JavaScript]
 
 
 
